@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>新北市垃圾車時間查詢｜垃圾車幾點到？即時倒數＋日曆提醒 🚛</title>
-<meta name="description" content="新北市垃圾車幾點來？免費查詢板橋、新莊、中和、永和、三重等 29 區共 2.6 萬個清運點的垃圾車時間，即時倒數下一班、GPS 找最近站點、每週時刻表一鍵加入手機日曆提醒。資料來自新北市政府開放資料，每月自動更新。">
+<meta name="description" content="新北市垃圾車幾點來？免費查詢板橋、新莊、中和、永和、三重等 29 區共 2.6 萬個清運點的垃圾車時間，即時倒數下一班、GPS 找最近清運點、每週時刻表一鍵加入手機日曆提醒。資料來自新北市政府開放資料，每月自動更新。">
 <meta name="keywords" content="新北市垃圾車,垃圾車時間,垃圾車查詢,垃圾車幾點,垃圾車路線,板橋垃圾車,新莊垃圾車,中和垃圾車,垃圾車提醒,垃圾車倒數,資源回收時間,廚餘回收">
 <link rel="canonical" href="https://ntpc-trash-countdown.sectools.tw/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ntpc-trash-countdown.sectools.tw/">
 <meta property="og:title" content="新北市垃圾車時間查詢｜垃圾車幾點到？即時倒數＋日曆提醒 🚛">
-<meta property="og:description" content="查你家垃圾車幾點到：即時倒數、GPS 找最近站點、每週時刻表一鍵加入手機日曆。新北市 29 區、2.6 萬個清運點，每月自動更新。">
+<meta property="og:description" content="查你家垃圾車幾點到：即時倒數、GPS 找最近清運點、每週時刻表一鍵加入手機日曆。新北市 29 區、2.6 萬個清運點，每月自動更新。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:site_name" content="新北市垃圾車倒數">
+<meta property="og:site_name" content="新北市垃圾車時間查詢">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="新北市垃圾車時間查詢｜即時倒數＋日曆提醒 🚛">
 <meta name="twitter:description" content="查你家垃圾車幾點到，一鍵加入手機日曆提醒。">
@@ -20,8 +20,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "新北市垃圾車倒數",
-  "alternateName": "新北市垃圾車時間查詢",
+  "name": "新北市垃圾車時間查詢",
+  "alternateName": "新北市垃圾車倒數",
   "url": "https://ntpc-trash-countdown.sectools.tw/",
   "description": "查詢新北市 29 區垃圾車時間：即時倒數下一班、GPS 找最近清運點、每週時刻表加入手機日曆提醒。",
   "applicationCategory": "UtilityApplication",
@@ -149,24 +149,24 @@
 <button class="theme-toggle" id="themeBtn" title="切換深淺色">🌙</button>
 <div class="wrap">
   <header>
-    <h1>🚛 新北市垃圾車倒數</h1>
-    <p>選你家附近的清運點，倒數垃圾車抵達時間，一鍵加進手機日曆。</p>
+    <h1>🚛 新北市垃圾車時間查詢</h1>
+    <p>垃圾車幾點到？選你家附近的清運點，即時倒數下一班，一鍵加進手機日曆提醒。</p>
   </header>
 
   <div class="notice">⚠️ 颱風或天災可能停收，出門前先看 <a href="https://crd-rubbish.epd.ntpc.gov.tw/dispPageBox/Ntpcepd/NtpIndex.aspx?ddsPageID=EPDNEWS" target="_blank" rel="noopener">環保局公告</a></div>
 
   <div class="panel" id="favPanel" style="display:none">
-    <label>⭐ 我的常用站點</label>
+    <label>⭐ 我的常用清運點</label>
     <div id="favList"></div>
   </div>
 
   <div class="panel">
     <label for="city">行政區</label>
     <select id="city"><option>載入中⋯</option></select>
-    <button class="btn geo" id="geoBtn">📍 找我附近的站點</button>
+    <button class="btn geo" id="geoBtn">📍 找我附近的清運點</button>
     <label for="village">里別</label>
     <select id="village" disabled><option>先選行政區</option></select>
-    <label for="q">搜尋站點（路名、地標）</label>
+    <label for="q">搜尋清運點（路名、地標）</label>
     <input type="search" id="q" placeholder="例如：中山路、公園、7-11⋯" disabled>
     <div class="stops" id="stops"></div>
   </div>
@@ -257,13 +257,13 @@ async function init() {
   $("geoBtn").onclick = geoLocate;
 }
 
-// ===== 定位找最近站點 =====
+// ===== 定位找最近清運點 =====
 function geoLocate() {
-  if (!$("city").value) { alert("請先選行政區，再用定位找該區最近的站點"); return; }
+  if (!$("city").value) { alert("請先選行政區，再用定位找該區最近的清運點"); return; }
   if (!navigator.geolocation) { alert("你的瀏覽器不支援定位"); return; }
   $("geoBtn").textContent = "📍 定位中⋯";
   navigator.geolocation.getCurrentPosition(pos => {
-    $("geoBtn").textContent = "📍 找我附近的站點";
+    $("geoBtn").textContent = "📍 找我附近的清運點";
     const { latitude: la, longitude: lo } = pos.coords;
     const dist = s => {
       const dx = (s[3] - lo) * 101000 * Math.cos(la * Math.PI / 180);
@@ -283,12 +283,12 @@ function geoLocate() {
       if (el.dataset.i !== undefined) el.onclick = () => selectStop(shown[+el.dataset.i], el);
     });
   }, err => {
-    $("geoBtn").textContent = "📍 找我附近的站點";
+    $("geoBtn").textContent = "📍 找我附近的清運點";
     alert("定位失敗：" + err.message);
   }, { enableHighAccuracy: true, timeout: 10000 });
 }
 
-// ===== 常用站點（⭐ 收藏多個）=====
+// ===== 常用清運點（⭐ 收藏多個）=====
 const getFavs = () => JSON.parse(localStorage.getItem("ntpc-trash-favs") || "[]");
 function renderFavs() {
   const favs = getFavs();
@@ -355,7 +355,7 @@ function renderStops() {
       <span class="t">${s[2]}</span>
     </div>`).join("") +
     (list.length > 200 ? `<div class="hint">還有 ${list.length - 200} 筆，請用搜尋縮小範圍</div>` : "") +
-    (list.length === 0 ? `<div class="hint">找不到站點 😢 換個關鍵字試試</div>` : "");
+    (list.length === 0 ? `<div class="hint">找不到清運點 😢 換個關鍵字試試</div>` : "");
   [...$("stops").children].forEach(el => {
     if (el.dataset.i !== undefined) el.onclick = () => selectStop(shown[+el.dataset.i], el);
   });
@@ -385,7 +385,7 @@ function selectStop(s, el) {
     const nG = nextOccur(s, 5), nR = nextOccur(s, 6), nF = nextOccur(s, 7);
     const fmtD = t => !t ? "－" : `${t.getMonth()+1}/${t.getDate()}(${WD[t.getDay()]}) ${s[2]}`;
     const cd = t => {
-      if (!t) return "此站點目前無收運資訊";
+      if (!t) return "此清運點目前無收運資訊";
       const diff = t - tpeNow();
       const h = Math.floor(diff / 3600000), m = Math.floor(diff % 3600000 / 60000), sec = Math.floor(diff % 60000 / 1000);
       if (diff < 3600000) return `${m} 分 ${sec} 秒`;
