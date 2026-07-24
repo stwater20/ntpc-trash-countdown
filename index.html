@@ -389,7 +389,7 @@ function selectStop(s, el) {
       const diff = t - tpeNow();
       const h = Math.floor(diff / 3600000), m = Math.floor(diff % 3600000 / 60000), sec = Math.floor(diff % 60000 / 1000);
       if (diff < 3600000) return `${m} 分 ${sec} 秒`;
-      if (diff < 86400000) return `${h} 小時 ${m} 分`;
+      if (diff < 86400000) return `${h} 小時 ${m} 分 ${sec} 秒`;
       return `${Math.floor(diff / 86400000)} 天 ${h % 24} 小時`;
     };
     $("detail").innerHTML = `
