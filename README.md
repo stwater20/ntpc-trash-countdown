@@ -11,6 +11,9 @@
 - **⭐ 常用清運點**：收藏多個清運點（例如家裡＋公司），一鍵切換
 - **🔗 可分享網址**：選好的清運點會寫進網址 hash，貼給家人直接開
 - **記住上次選擇**：下次打開直接顯示你的清運點
+- **📍 跨區定位**：GPS 自動判斷你在哪一區，找出最近 20 個清運點（不用先選區）
+- **🔎 SEO 落地頁**：29 個行政區＋1,000+ 個里各有獨立頁面（例如 `/板橋區/九如里/`），含完整時刻表、FAQ 與結構化資料，搜「XX里垃圾車時間」就找得到
+- **📱 可安裝成 App**：支援加到主畫面（Web App Manifest），深淺色自動切換
 
 ## 🆚 為什麼不用官方網站就好？
 
@@ -29,14 +32,18 @@
 ## 🏗️ 架構
 
 ```
-index.html                      ← 網站本體（無外部套件、單檔）
-data/index.json                 ← 行政區索引（Actions 產生）
-data/<行政區>.json               ← 各區清運點資料（Actions 產生）
-scripts/fetch-data.mjs          ← 抓資料腳本（Node 20+，無外部套件）
-.github/workflows/update-data.yml ← 每月 1 號自動抓最新資料
+index.html, <行政區>/, <行政區>/<里>/   ← 由 scripts/build-pages.py 產生（勿手改）
+privacy.html, 404.html, sitemap.xml     ← 同上
+assets/app.js, assets/app.css           ← 前端程式與樣式（無外部套件，所有頁面共用）
+assets/icon.svg, og-image.png ...       ← 圖示與社群分享圖
+data/index.json, data/<行政區>.json      ← 清運點資料（scripts/fetch-data.mjs 產生）
+data/geo.json                           ← 各區中心點，給跨區定位用（build-pages.py 產生）
+.github/workflows/update-data.yml       ← 每月 1 號抓資料 → 重建頁面 → commit
 ```
 
 前端不直接呼叫政府 API（該 API 不支援 CORS），改由 GitHub Actions 在伺服器端抓資料、切成每區 JSON commit 進 repo，網站讀同源檔案：快、穩、離線可快取，也不怕 API 掛掉。
+
+改版面或文案：改 `scripts/build-pages.py` 的模板後執行 `python3 scripts/build-pages.py`（Python 3.8+，無外部套件）。改了 `assets/app.js` / `app.css` 記得把 `ASSET_V` 加一，避免瀏覽器吃到舊快取。
 
 ## 🚀 部署
 
@@ -56,6 +63,10 @@ scripts/fetch-data.mjs          ← 抓資料腳本（Node 20+，無外部套件
 - [ ] 垃圾車即時 GPS（開放資料每 2 分鐘更新，需解 CORS，可能要接 proxy）
 - [ ] 停收公告自動顯示
 - [ ] 其他縣市（台北市、桃園市⋯）
+
+## 🧰 更多工具
+
+本站由 [Sectools.tw](https://sectools.tw/?utm_source=ntpc-trash&utm_medium=referral&utm_campaign=github) 製作與維護，更多免費實用小工具：[sectools.tw/tools](https://sectools.tw/tools?utm_source=ntpc-trash&utm_medium=referral&utm_campaign=github)
 
 ## License
 
