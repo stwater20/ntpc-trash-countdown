@@ -2,6 +2,8 @@
 
 選你家附近的清運點，即時倒數垃圾車抵達時間，一鍵把每週收運時間加進手機日曆。純靜態網站，跑在 GitHub Pages 上，資料由 GitHub Actions 每月自動更新。
 
+**🔗 線上使用：<https://ntpc-trash-countdown.sectools.tw/>**　｜　台北市版本：[tpe-trash-countdown.sectools.tw](https://tpe-trash-countdown.sectools.tw/)
+
 ## ✨ 功能
 
 - **下一班倒數**：以台北時間計算下一次收運（垃圾／回收／廚餘分開計），一小時內顯示分秒倒數
