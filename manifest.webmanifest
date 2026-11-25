@@ -1,6 +1,6 @@
 {
-  "name": "新北垃圾車倒數｜新北市垃圾車時間查詢",
-  "short_name": "垃圾車倒數",
+  "name": "新北倒垃圾｜新北市垃圾車時間查詢",
+  "short_name": "新北倒垃圾",
   "description": "查你家垃圾車幾點到：即時倒數、GPS 找最近清運點、每週提醒加入手機日曆。",
   "lang": "zh-Hant-TW",
   "start_url": "/?source=pwa",

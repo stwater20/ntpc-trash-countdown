@@ -1,4 +1,4 @@
-// 新北垃圾車倒數 — 前端（無外部套件）
+// 新北倒垃圾 — 前端（無外部套件）
 // 清運點資料格式：[name, village, time, lon, lat, garbage7, recycling7, food7, linename]
 (() => {
 const WD = ["日","一","二","三","四","五","六"];
@@ -352,7 +352,7 @@ function makeEvent(s, c, fi, label, emoji) {
     `RRULE:FREQ=WEEKLY;BYDAY=${days}`,
     `SUMMARY:${emoji} ${label}車來了－${icsText(s[0])}`,
     `LOCATION:${icsText(c + s[1] + " " + s[0])}`,
-    `DESCRIPTION:表定時間 ${s[2]}（${icsText(s[8])}）\\n由新北垃圾車倒數產生：https://ntpc-trash-countdown.sectools.tw/`,
+    `DESCRIPTION:表定時間 ${s[2]}（${icsText(s[8])}）\\n由新北倒垃圾產生：https://ntpc-trash-countdown.sectools.tw/`,
     "BEGIN:VALARM", "TRIGGER:-PT10M", "ACTION:DISPLAY",
     `DESCRIPTION:${emoji} ${label}車 10 分鐘後到 ${icsText(s[0])}`,
     "END:VALARM", "END:VEVENT"
