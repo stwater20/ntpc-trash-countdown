@@ -14,7 +14,7 @@ from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://ntpc-trash-countdown.sectools.tw"
-NAME = "新北垃圾車倒數"
+NAME = "新北倒垃圾"
 UTM = "utm_source=ntpc-trash&utm_medium=referral&utm_campaign=crosslink"
 SECTOOLS = f"https://sectools.tw/?{UTM}"
 SECTOOLS_TOOLS = f"https://sectools.tw/tools?{UTM}"
@@ -24,11 +24,11 @@ OFFICIAL = "https://crd-rubbish.epd.ntpc.gov.tw/"
 NOTICE = "https://crd-rubbish.epd.ntpc.gov.tw/dispPageBox/Ntpcepd/NtpIndex.aspx?ddsPageID=EPDNEWS"
 DATASET = "https://data.ntpc.gov.tw/datasets/edc3ad26-8ae7-4916-a00b-bc6048d19bf8"
 WD = "日一二三四五六"
-ASSET_V = "3"
+ASSET_V = "4"
 UPDATED = ""
 
 RELATED = [
-    ("🚛", "台北垃圾車倒數", "台北市版本：清運點倒數＋每週時刻表＋日曆提醒", "https://tpe-trash-countdown.sectools.tw/"),
+    ("🚛", "台北倒垃圾", "台北市版本：清運點倒數＋每週時刻表＋日曆提醒", "https://tpe-trash-countdown.sectools.tw/"),
     ("🌀", "颱風假機率計算器", "依停班停課門檻與歷史數據，估算明天放不放颱風假", "https://typhoon.sectools.tw/"),
     ("🏝️", "台灣連假倒數", "下一個連假還有幾天？附請最少假、休最長假攻略", "https://taiwan-holiday-countdown.sectools.tw/"),
     ("⛽", "台灣油價預測", "依中油浮動油價機制試算下週汽柴油漲跌", "https://oil-price.sectools.tw/"),
@@ -91,7 +91,7 @@ def head(title, desc, canonical, jsonld=(), robots="index,follow,max-image-previ
 <meta name="theme-color" content="#0d131c" media="(prefers-color-scheme: dark)">
 <meta name="author" content="Sectools.tw">
 <meta name="application-name" content="{NAME}">
-<meta name="apple-mobile-web-app-title" content="垃圾車倒數">
+<meta name="apple-mobile-web-app-title" content="{NAME}">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -190,7 +190,7 @@ def footer(cities):
         <ul>
           <li><a href="{SECTOOLS}" target="_blank" rel="noopener">Sectools.tw 首頁</a></li>
           <li><a href="{SECTOOLS_TOOLS}" target="_blank" rel="noopener">Sectools.tw 更多免費工具</a></li>
-          <li><a href="{utm('https://tpe-trash-countdown.sectools.tw/')}" target="_blank" rel="noopener">台北垃圾車倒數</a></li>
+          <li><a href="{utm('https://tpe-trash-countdown.sectools.tw/')}" target="_blank" rel="noopener">台北倒垃圾</a></li>
           <li><a href="{OFFICIAL}" target="_blank" rel="noopener">新北市環保局清運查詢</a></li>
           <li><a href="/privacy.html">隱私權政策</a></li>
           <li><a href="{GITHUB}" target="_blank" rel="noopener">GitHub 原始碼</a></li>
@@ -263,7 +263,7 @@ def write(rel, html):
 def build_home(idx, cities, updated):
     total = idx["total"]
     desc = f"新北市垃圾車幾點來？免費查詢板橋、新莊、中和、永和、三重等 29 區 {total:,} 個清運點的垃圾車、資源回收、廚餘時間，即時倒數下一班、GPS 找最近清運點，一鍵加入手機日曆提醒。每月自動更新。"
-    title = "新北市垃圾車時間查詢｜垃圾車幾點到？即時倒數＋日曆提醒"
+    title = "新北倒垃圾｜新北市垃圾車時間查詢・垃圾車幾點到？即時倒數＋日曆提醒"
     faq = [
         ("新北市垃圾車幾點來？怎麼查？",
          f"在上方選擇行政區與里別（或按「找我附近的清運點」用 GPS 定位），點選你家附近的清運點，就會顯示表定時間與「下一班還有多久」的倒數。全市 {total:,} 個清運點都查得到。"),
@@ -281,7 +281,7 @@ def build_home(idx, cities, updated):
          "可以。選好清運點後按「分享」，網址會記住這個清運點，家人打開連結就直接看到同一個倒數與時刻表。也可以按「收藏」把家裡、公司等多個清運點存起來一鍵切換。"),
     ]
     jsonld = [
-        {"@context": "https://schema.org", "@type": "WebApplication", "name": "新北市垃圾車時間查詢", "alternateName": NAME,
+        {"@context": "https://schema.org", "@type": "WebApplication", "name": NAME, "alternateName": ["新北市垃圾車時間查詢", "新北垃圾車倒數"],
          "url": SITE + "/", "description": desc, "applicationCategory": "UtilityApplication", "operatingSystem": "Any",
          "inLanguage": "zh-Hant-TW", "isAccessibleForFree": True, "image": SITE + "/assets/og-image.png",
          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TWD"}, "publisher": PUBLISHER,
@@ -326,7 +326,7 @@ def build_home(idx, cities, updated):
   <h2 class="title">為什麼用這個工具？</h2>
   <p class="sub">我們實測了官方查詢網，把最常卡住的地方都改掉了</p>
   <div class="table-wrap"><table class="compare">
-    <thead><tr><th>一般查詢方式</th><th>新北垃圾車倒數</th></tr></thead>
+    <thead><tr><th>一般查詢方式</th><th>新北倒垃圾</th></tr></thead>
     <tbody>
       <tr><td>進站先跳全螢幕公告，每次都要手動關</td><td>打開就是查詢工具，三步看到結果</td></tr>
       <tr><td>地圖載入慢、手機吃流量</td><td>輕量清單介面，秒開省流量</td></tr>
@@ -355,8 +355,8 @@ def build_district(city, stops, cities, updated):
     t0, t1 = time_range(stops)
     peak = peak_hour(stops)
     n = len(stops)
-    title = f"{city}垃圾車時間查詢｜{len(villages)} 里清運點路線、時刻表＋即時倒數"
-    desc = f"{city}垃圾車幾點到？收錄{city} {len(villages)} 個里、{n:,} 個清運點、{len(lines)} 條路線的垃圾車與資源回收時間（{t0}–{t1}），即時倒數下一班、GPS 找最近清運點，一鍵加入手機日曆提醒。"
+    title = f"新北市{city}垃圾車時間查詢｜{len(villages)} 里清運點時刻表＋即時倒數｜{NAME}"
+    desc = f"新北市{city}垃圾車幾點到？收錄{city} {len(villages)} 個里、{n:,} 個清運點、{len(lines)} 條路線的垃圾車與資源回收時間（{t0}–{t1}），即時倒數下一班、GPS 找最近清運點，一鍵加入手機日曆提醒。"
     canon = url_of(city)
     crumbs = [("首頁", SITE + "/"), (f"{city}垃圾車時間", canon)]
     top_v = sorted(villages.items(), key=lambda kv: -len(kv[1]))[:3]
@@ -421,8 +421,8 @@ def build_village(city, village, stops, siblings, cities, updated):
     common = "、".join(WD[i] for i in range(7) if gdays[i] > 0) or "—"
     sample = "、".join(dict.fromkeys(s[0] for s in stops))
     sample = sample[:60] + ("⋯" if len(sample) > 60 else "")
-    title = f"{city}{village}垃圾車時間表｜{n} 個清運點幾點到＋即時倒數"
-    desc = f"{city}{village}垃圾車幾點來？{n} 個清運點（{sample}）的垃圾車、資源回收、廚餘收運時間 {t0}–{t1}，含路線與每週收運日，可即時倒數並加入手機日曆提醒。"
+    title = f"新北市{city}{village}垃圾車時間表｜{n} 個清運點幾點到？｜{NAME}"
+    desc = f"新北市{city}{village}垃圾車幾點來？{n} 個清運點（{sample}）的垃圾車、資源回收、廚餘收運時間 {t0}–{t1}，含路線與每週收運日，可即時倒數並加入手機日曆提醒。"
     canon = url_of(city, village)
     crumbs = [("首頁", SITE + "/"), (f"{city}", url_of(city)), (f"{village}垃圾車時間", canon)]
     faq = [
